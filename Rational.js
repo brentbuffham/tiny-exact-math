@@ -239,3 +239,58 @@ export function determinant(p1, p2, p3) {
 
   return det.sign();
 }
+
+/**
+ * Compute the orientation (sign of the 3×3 determinant) of four 3-D points.
+ *
+ * Given points p1, p2, p3, p4 each with numeric `x`, `y`, and `z`
+ * properties, the determinant is:
+ *
+ *   | p2.x-p1.x  p3.x-p1.x  p4.x-p1.x |
+ *   | p2.y-p1.y  p3.y-p1.y  p4.y-p1.y |
+ *   | p2.z-p1.z  p3.z-p1.z  p4.z-p1.z |
+ *
+ * Returns +1 if p4 is above the plane defined by p1→p2→p3 (right-hand rule),
+ * -1 if below, and 0 if coplanar.
+ *
+ * All coordinates are converted to exact Rationals before the computation so
+ * the result is free of floating-point rounding error.
+ *
+ * @param {{ x: number, y: number, z: number }} p1
+ * @param {{ x: number, y: number, z: number }} p2
+ * @param {{ x: number, y: number, z: number }} p3
+ * @param {{ x: number, y: number, z: number }} p4
+ * @returns {-1 | 0 | 1}  sign of the determinant
+ */
+export function determinant3(p1, p2, p3, p4) {
+  const x1 = fromNumber(p1.x);
+  const y1 = fromNumber(p1.y);
+  const z1 = fromNumber(p1.z);
+  const x2 = fromNumber(p2.x);
+  const y2 = fromNumber(p2.y);
+  const z2 = fromNumber(p2.z);
+  const x3 = fromNumber(p3.x);
+  const y3 = fromNumber(p3.y);
+  const z3 = fromNumber(p3.z);
+  const x4 = fromNumber(p4.x);
+  const y4 = fromNumber(p4.y);
+  const z4 = fromNumber(p4.z);
+
+  // Column vectors relative to p1
+  const a = x2.subtract(x1);
+  const b = x3.subtract(x1);
+  const c = x4.subtract(x1);
+  const d = y2.subtract(y1);
+  const e = y3.subtract(y1);
+  const f = y4.subtract(y1);
+  const g = z2.subtract(z1);
+  const h = z3.subtract(z1);
+  const i = z4.subtract(z1);
+
+  // det = a(ei - fh) - b(di - fg) + c(dh - eg)
+  const det = a.multiply(e.multiply(i).subtract(f.multiply(h)))
+    .subtract(b.multiply(d.multiply(i).subtract(f.multiply(g))))
+    .add(c.multiply(d.multiply(h).subtract(e.multiply(g))));
+
+  return det.sign();
+}
