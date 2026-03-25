@@ -11,7 +11,7 @@
  * @param {bigint} b
  * @returns {bigint}
  */
-function gcd(a, b) {
+export function gcd(a, b) {
   a = a < 0n ? -a : a;
   b = b < 0n ? -b : b;
   while (b !== 0n) {
@@ -35,7 +35,7 @@ function gcd(a, b) {
  * @param {number} n
  * @returns {Rational}
  */
-function fromNumber(n) {
+export function fromNumber(n) {
   if (!isFinite(n)) {
     throw new RangeError("Cannot convert non-finite number to Rational");
   }

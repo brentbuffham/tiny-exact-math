@@ -1,0 +1,34 @@
+{
+  "name": "tiny-exact-math",
+  "version": "0.0.1",
+  "description": "Minimal rational arithmetic library for exact geometric predicates in pure JavaScript",
+  "type": "module",
+  "main": "Rational.js",
+  "exports": {
+    ".": "./Rational.js"
+  },
+  "files": [
+    "Rational.js"
+  ],
+  "keywords": [
+    "rational",
+    "exact-arithmetic",
+    "bigint",
+    "determinant",
+    "geometric-predicates",
+    "orientation",
+    "mesh",
+    "boolean",
+    "trimesh"
+  ],
+  "author": "Brent Buffham",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brentbuffham/tiny-exact-math.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brentbuffham/tiny-exact-math/issues"
+  },
+  "homepage": "https://github.com/brentbuffham/tiny-exact-math#readme"
+}
